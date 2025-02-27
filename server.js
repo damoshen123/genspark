@@ -1377,23 +1377,10 @@ async function processStreamData(message) {
       return;
   }
   if(message=="ACTION_QUOTA_EXCEEDED"){
+    updateCookiesJson(nowfilename,10000);
 
     const text = "这个号次数上限了";
 
-
-    await page.evaluate(() => {
-      const close_button = document.querySelector('.close_button');
-      if (close_button) {
-        const event = new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true
-        });
-        close_button.dispatchEvent(event);
-      }
-    });
-
-    updateCookiesJson(nowfilename,10000);
     const response = {
         id: "chatcmpl-" + Math.random().toString(36).substr(2, 9),
         object: "chat.completion",
@@ -1415,6 +1402,19 @@ async function processStreamData(message) {
     };
       resssss.write(`data: ${JSON.stringify(response).replace("\\n", "\\n ")}\n\n`);
       resssss.end();
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      await page.evaluate(() => {
+        const close_button = document.querySelector('[class="button ok"]');
+        if (close_button) {
+          const event = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true
+          });
+          close_button.dispatchEvent(event);
+        }
+      });
+
       return;
   }
 
