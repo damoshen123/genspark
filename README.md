@@ -10,14 +10,14 @@
 
 3. 双击运行`Start.bat`文件。这将自动安装依赖并启动服务器。
 
-服务器将在 http://localhost:3000 上运行。
+服务器将在 http://localhost:3333 上运行。
 ## 配置
 
-在 config.json文件中 设置端口 cookie 和 代理 和无头模式（不显示浏览器）
+在 config.json文件中 设置端口  和无头模式（不显示浏览器）
 
 ## cookie 获取
 
-可以按 f12 在网页的控制台中 输入 console.log(document.cookie);  来获取
+可以按 f12 在网页网络监控中获取
 
 ## 投喂咖啡
 
